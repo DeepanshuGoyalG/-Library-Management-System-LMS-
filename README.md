@@ -72,7 +72,7 @@ library_mgmt/
 
 ### Diagram
 
-![Architecture Diagram](docs/architecture.png)  
+![Architecture Diagram]([docs/architecture.png](https://github.com/DeepanshuGoyalG/-Library-Management-System-LMS-/blob/main/architecture.png))  
 
 ---
 
@@ -117,7 +117,7 @@ library_mgmt/
 git clone <repo_url>
 cd library_mgmt
 
-2. ** create virtual environment**
+2.** create virtual environment**
 python -m venv venv
 source venv/bin/activate   # Linux/Mac
 venv\Scripts\activate      # Windows
@@ -204,3 +204,4 @@ Pagination for large datasets
 Role-based access for finer permissions
 
 Unit tests with pytest
+
