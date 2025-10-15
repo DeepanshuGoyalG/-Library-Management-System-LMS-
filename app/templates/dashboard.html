@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Hello, {{ current_user.name }}!</h2>
+
+    <div class="row">
+        <!-- Books Info -->
+        <div class="col-md-4 mb-3">
+            <div class="card text-white bg-primary">
+                <div class="card-body">
+                    <h5 class="card-title">Books</h5>
+                    <p class="card-text">View and manage books in the library.</p>
+                    <a href="{{ url_for('admin.view_inventory') }}" class="btn btn-light">Manage Books</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Borrowed Books Info -->
+        <div class="col-md-4 mb-3">
+            <div class="card text-white bg-success">
+                <div class="card-body">
+                    <h5 class="card-title">Borrowed Books</h5>
+                    <p class="card-text">Check borrowed books and their status.</p>
+                    <a href="{{ url_for('admin.view_all_borrowed_books') }}" class="btn btn-light">View Borrowed</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Users Info (for admin) -->
+        {% if current_user.role == 'admin' %}
+        <div class="col-md-4 mb-3">
+            <div class="card text-white bg-warning">
+                <div class="card-body">
+                    <h5 class="card-title">Users</h5>
+                    <p class="card-text">Manage library users.</p>
+                    <a href="{{ url_for('admin.manage_users') }}" class="btn btn-light">View Users</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Optional: Quick Search -->
+    <div class="mt-5">
+        <h4>Search Books</h4>
+        <form id="searchForm">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search by book title..." id="searchQuery">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-primary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+        <ul id="searchResults" class="list-group"></ul>
+    </div>
+</div>
+
+<script>
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const query = document.getElementById('searchQuery').value;
+    fetch(`/search_books?q=${query}`)
+        .then(response => response.json())
+        .then(data => {
+            const results = document.getElementById('searchResults');
+            results.innerHTML = '';
+            if(data.length === 0){
+                results.innerHTML = '<li class="list-group-item">No books found.</li>';
+            } else {
+                data.forEach(book => {
+                    const li = document.createElement('li');
+                    li.className = 'list-group-item';
+                    li.textContent = `${book.title} by ${book.author}`;
+                    results.appendChild(li);
+                });
+            }
+        });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}User Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Welcome, {{ current_user.name }}!</h2>
+
+    <!-- Borrowed Books Section -->
+    <div class="mb-4">
+        <h4>📖 My Borrowed Books</h4>
+        {% if borrowed_books %}
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Book</th>
+                        <th>Borrowed On</th>
+                        <th>Due Date</th>
+                        <th>Returned On</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in borrowed_books %}
+                    <tr {% if record.is_overdue() and not record.return_date %} class="table-danger" {% endif %}>
+                        <td>{{ record.book.title }}</td>
+                        <td>{{ record.borrow_date.strftime('%Y-%m-%d') }}</td>
+                        <td>{{ record.due_date.strftime('%Y-%m-%d') }}</td>
+                        <td>{{ record.return_date.strftime('%Y-%m-%d') if record.return_date else '-' }}</td>
+                        <td>
+                            {% if record.return_date %}
+                                ✅ Returned
+                            {% elif record.is_overdue() %}
+                                ⚠ Overdue
+                            {% else %}
+                                ⏳ Borrowed
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if not record.return_date %}
+                                <form action="{{ url_for('user.return_book', borrow_id=record.id) }}" method="POST">
+                                    <button class="btn btn-warning btn-sm" type="submit">Return</button>
+                                </form>
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+            <p>You haven’t borrowed any books yet.</p>
+        {% endif %}
+    </div>
+
+    <!-- Browse Books Button -->
+    <div class="mb-4">
+        <a href="{{ url_for('user.view_borrowed_books') }}" class="btn btn-primary">📚 Browse Books</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Admin Dashboard</h2>
+
+<div class="row">
+    <!-- Total Books -->
+    <div class="col-md-4 mb-3">
+        <div class="card text-white bg-primary h-100">
+            <div class="card-body">
+                <h5 class="card-title">Total Books</h5>
+                <p class="card-text display-4">{{ books_count }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total Users -->
+    <div class="col-md-4 mb-3">
+        <div class="card text-white bg-success h-100">
+            <div class="card-body">
+                <h5 class="card-title">Total Users</h5>
+                <p class="card-text display-4">{{ users_count }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Issued Books -->
+    <div class="col-md-4 mb-3">
+        <div class="card text-white bg-warning h-100">
+            <div class="card-body">
+                <h5 class="card-title">Issued Books</h5>
+                <p class="card-text display-4">{{ issued_books }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-4">
+    <a href="{{ url_for('admin.view_inventory') }}" class="btn btn-primary mr-2">Manage Books</a>
+    <a href="{{ url_for('admin.manage_users') }}" class="btn btn-success mr-2">Manage Users</a>
+    <a href="{{ url_for('admin.view_all_borrowed_books') }}" class="btn btn-warning">View Borrowed Books</a>
+</div>
+{% endblock %}
