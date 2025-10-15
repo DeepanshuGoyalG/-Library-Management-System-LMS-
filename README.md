@@ -36,39 +36,39 @@ The system follows a **modular MVC architecture**:
 
 
 ### FILE STRUCTURE
-library_mgmt/
-│
-├── app/
-│   ├── auth/
-│   │   ├── __init__.py
-│   │   └── routes.py
-│   ├── models/
-│   │   ├── __init__.py
-│   │   ├── user.py
-│   │   ├── book.py
-│   │   ├── issue.py
-│   │   └── review.py
-│   ├── routes/
-│   │   ├── __init__.py
-│   │   ├── admin.py
-│   │   ├── user.py
-│   │   ├── main.py
-│   │   ├── upload.py
-│   │   └── export.py
-│   ├── utils/
-│   │   ├── __init__.py
-│   │   ├── file_utils.py
-│   │   ├── email_utils.py
-│   │   └── schedule_utils.py
-│   ├── templates/
-│   └── static/
-│       └── css/style.css
-├── migrations/
-├── uploads/
-├── .env
-├── config.py
-├── main.py
-└── requirements.txt
+library_mgmt/ <br />
+│<br />
+├── app/<br />
+│   ├── auth/<br />
+│   │   ├── __init__.py  <br />
+│   │   └── routes.py<br />
+│   ├── models/<br />
+│   │   ├── __init__.py<br />
+│   │   ├── user.py<br />
+│   │   ├── book.py<br />
+│   │   ├── issue.py<br />
+│   │   └── review.py<br />
+│   ├── routes/<br />
+│   │   ├── __init__.py<br />
+│   │   ├── admin.py <br />
+│   │   ├── user.py <br />
+│   │   ├── main.py <br />
+│   │   ├── upload.py <br />
+│   │   └── export.py <br />
+│   ├── utils/ <br />
+│   │   ├── __init__.py <br />
+│   │   ├── file_utils.py <br />
+│   │   ├── email_utils.py <br />
+│   │   └── schedule_utils.py <br />
+│   ├── templates/ <br />
+│   └── static/ <br />
+│       └── css/style.css <br />
+├── migrations/ <br />
+├── uploads/ <br />
+├── .env <br />
+├── config.py <br /> 
+├── main.py <br />
+└── requirements.txt <br />
 
 ### Diagram
 
@@ -204,4 +204,5 @@ Pagination for large datasets
 Role-based access for finer permissions
 
 Unit tests with pytest
+
 
