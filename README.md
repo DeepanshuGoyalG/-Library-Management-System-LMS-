@@ -72,7 +72,7 @@ library_mgmt/
 
 ### Diagram
 
-![Architecture Diagram]([docs/architecture.png](https://github.com/DeepanshuGoyalG/-Library-Management-System-LMS-/blob/main/architecture.png))  
+![Architecture Diagram]((https://github.com/DeepanshuGoyalG/-Library-Management-System-LMS-/blob/main/architecture.png)
 
 ---
 
